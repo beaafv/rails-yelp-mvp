@@ -1,0 +1,11 @@
+<p>Rate this restaurant <%= @restaurant.name %></p>
+
+
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'create a review📝', new_restaurant_review_path(@restaurant), style: "text-decoration: none;" %></button>
+
