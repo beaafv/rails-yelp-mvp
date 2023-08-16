@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  
+
   def index
     @restaurants = Restaurant.all
   end
@@ -10,7 +10,12 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
+
+    if @restaurant.save
+      redirect_to @restaurant, notice: "Restaurant was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -18,6 +23,6 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:task).permit(:name, :address, :phoneCategory, :content)
+    params.require(:restaurant).permit(:name, :address, :phone_category, :content)
   end
 end

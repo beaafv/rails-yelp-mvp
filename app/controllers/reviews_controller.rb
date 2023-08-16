@@ -11,6 +11,13 @@ class ReviewsController < ApplicationController
     @review.restaurant_id = @restaurant.id
     @review.save
 
+
+    if @review.save
+      redirect_to @review, notice: "Review was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def show
